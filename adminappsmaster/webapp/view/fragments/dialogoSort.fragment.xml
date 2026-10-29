@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleSortDialogConfirm" sortDescending="true" resetFilters="onResetSort">
+		<sortItems>
+			<ViewSettingsItem text="{i18n>id}" key="APPID"/>
+			<ViewSettingsItem text="{i18n>descripcion}" key="DESCRIPTION"/>
+			<ViewSettingsItem text="{i18n>estado}" key="DELETESTATUS"/>			
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

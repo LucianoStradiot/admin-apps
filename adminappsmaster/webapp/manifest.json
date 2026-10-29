@@ -1,0 +1,146 @@
+{
+  "_version": "1.90.0",
+  "sap.app": {
+    "id": "com.claro.proveedores.adminappsmaster",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.34.0",
+      "toolsId": "928dabf7-992c-4f5b-afb8-f93c76914ab0"
+    },
+    "dataSources": {
+      "PORTAL_PROVEEDORES_REST": {
+        "uri": "/PORTAL_PROVEEDORES_REST/",
+        "type": "http"
+      },
+      "OdataServicePPC": {
+        "uri": "/v2/OdataServicePPC/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/ZMM_PORTAL_PROVEEDORES_SRV/metadata.xml"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "adminappsmaster-adminappsmaster": {
+          "semanticObject": "adminappsmaster",
+          "action": "adminappsmaster",
+          "title": "{{flpTitle}}",
+          "icon": "sap-icon://internet-browser",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.154.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.claro.proveedores.adminappsmaster.i18n.i18n",
+          "supportedLocales": ["","en"],
+          "fallbackLocale": ""
+        }
+      },
+      "modeloDatos": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": false
+				},
+				"dataSource": "OdataServicePPC",
+				"preload": true
+			}
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.claro.proveedores.adminappsmaster.view",
+        "async": true,
+        "viewPath": "com.claro.proveedores.adminappsmaster.view"
+      },
+      "routes": [
+        {
+          "name": "V1",
+          "pattern": ":?query:",
+          "target": [
+            "TargetV1"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetV1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "V1",
+          "viewName": "V1"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.claro.proveedores.adminappsmaster.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "z_admin_apps_master"
+  }
+}

@@ -1,0 +1,63 @@
+<mvc:View controllerName="com.claro.proveedores.adminappsmaster.controller.V1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core">
+	<Page id="page" title="{i18n>title}">
+		<headerContent>
+		<Button tooltip="{i18n>actualizar}" icon="sap-icon://synchronize" press="onSetView"/>
+		</headerContent>
+			<content>
+				<fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" showFilterConfiguration="false" showGoOnFB="false">
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem name="busqueda" label="{i18n>busqueda}" groupName="Group1" visibleInFilterBar="true">
+							<fb:control>
+								<SearchField search="onSearchTable" placeholder="{i18n>buscar}..."/>
+							</fb:control>
+						</fb:FilterGroupItem>
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+				<Table id="oTable" alternateRowColors="false" inset="false" items="{oModelAppMaster>/DATA/}" fixedLayout="false" showNoData="true" noDataText="{i18n>sinDatos}">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Title text="{oModelAppMaster>/TITULO_TABLA}" level="H2"/>
+							<Button tooltip="{i18n>descargaExcel}" icon="sap-icon://excel-attachment" press="onDescargaExcel" enabled="{modelSettings>/enabledButtonTable}"/>
+							<ToolbarSpacer/>
+							<Button tooltip="{i18n>ordenar}" icon="sap-icon://sort" press="handleSortButtonPressed" enabled="{modelSettings>/enabledButtonTable}"/>
+							<Button tooltip="{i18n>filtrar}" icon="sap-icon://add-filter" press="handleFilterButtonPressed" enabled="{modelSettings>/enabledButtonTable}"/>
+							<Button text="{i18n>insertar}" type="Emphasized" press="onDialogInsert"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<!--<dependents>
+						<plugins:ColumnResizer/>
+					</dependents>-->
+					<columns>
+						<Column hAlign="Left">
+							<HBox>
+								<Text text="{i18n>id}"/>
+							</HBox>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<HBox>
+								<Text text="{i18n>descripcion}"/>
+							</HBox>
+						</Column>
+						<Column hAlign="Center" width="8rem" minScreenWidth="Tablet" demandPopin="true">
+							<HBox>
+								<Text text="{i18n>descripcionestado}"/>
+							</HBox>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle" type="Detail" detailPress="onDialogModify">
+							<cells>
+								<Text text="{oModelAppMaster>APPID}"/>
+								<Text text="{oModelAppMaster>DESCRIPTION}"/>
+								<ObjectStatus text="{oModelAppMaster>DELETESTATUS_DESCRIPTION}" inverted="true" state="{= ${oModelAppMaster>DELETESTATUS} === '1' ? 'Success' : 'Error' }"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+	</Page>
+</mvc:View>

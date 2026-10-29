@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog title="{i18n>nuevo}" contentWidth="400px" verticalScrolling="true">
+		<content>
+			<f:SimpleForm id="oSimpleFormDisplayId" editable="false" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="2" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false">
+				<f:content>
+					<VBox>
+						<Label text="{i18n>id}" required="true"/>
+						<Input id="inputAppId" liveChange="upperCase" maxLength="10" width="100%" value="" required="true"/>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>
+					<VBox>
+						<Label text="{i18n>descripcion}" required="true"/>
+						<Input id="inputDescription" maxLength="30" width="100%" value="" required="true"/>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>
+					<VBox>
+						<Label text="{i18n>action}" required="true"/>
+						<MultiComboBox id="oMultiComboBoxAccionesId" width="100%" items="{oModelAcciones>/}">
+							<core:Item key="{oModelAcciones>description}" text="{oModelAcciones>description}"/>
+						</MultiComboBox>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>
+					<VBox>
+						<Label text="URL"/>
+						<TextArea rows="2" id="inputURL" change="onSetSrcImage" maxLength="999" width="100%"/>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>
+					<VBox>
+						<Image width="100%" height="12.6rem" id="oImageURL" visible="false"></Image>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button text="{i18n>guardar}" type="Emphasized" press="onDialogOk"/>
+			<Button text="{i18n>cancelar}" press="dialogInsertarClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

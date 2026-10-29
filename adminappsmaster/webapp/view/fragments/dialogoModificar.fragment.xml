@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog title="{i18n>editar}" contentWidth="400px" contentHeight="400px" verticalScrolling="true">
+		<content>
+			<f:SimpleForm id="oSimpleFormEditId" editable="false" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="2" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false">
+				<f:content>
+					 <VBox>
+						<Label text="{i18n>id}" required="true"/>
+						<Input id="inputAppIdEditar" editable="false" maxLength="10" width="100%" value="{oModelEdit>/APPID}" required="true"/>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>
+					<VBox>
+						<Label text="{i18n>descripcion}" required="true"/>
+						<Input id="inputDescriptionEditar" maxLength="30" width="100%" value="{oModelEdit>/DESCRIPTION}" required="true"/>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>	
+					<VBox>
+						<Label text="Aciones" required="true"/>
+						<MultiComboBox editable="false" id="oMultiComboBoxAccionesIdEditar" width="100%" items="{oModelAcciones>/}">
+							<core:Item key="{oModelAcciones>accessID}" text="{oModelAcciones>description}"/>
+						</MultiComboBox>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>
+					<VBox>
+						<Label text="URL"/>
+						<TextArea rows="2" id="inputURLEditar" maxLength="999" width="100%" value="{oModelEdit>/URL}"/>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>
+					<VBox>
+					<Image width="100%" height="12.6rem" id="oImageURLEditar" visible="true" src="{oModelEdit>/URL}"></Image>
+						<layoutData>
+							<l:GridData span="XL12 L12 M12 S12"/>
+						</layoutData>
+					</VBox>
+					<VBox>
+						<Label text="{i18n>estado}"/>
+						<RadioButtonGroup id="inputDeleteStatus" columns="2">
+							<RadioButton text="{i18n>activo}" selected="{= ${oModelEdit>/DELETESTATUS} === '1' ? true : false }"/>
+							<RadioButton text="{i18n>inactivo}" selected="{= ${oModelEdit>/DELETESTATUS} === '0' ? true : false }"/>
+						</RadioButtonGroup>
+						<layoutData>
+							<l:GridData span="XL6 L6 M6 S6"/>
+						</layoutData>
+					</VBox>	
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button text="{i18n>guardar}" type="Emphasized" press="onDialogOk2"/>
+			<Button text="{i18n>cancelar}" press="dialogModificarClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
